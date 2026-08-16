@@ -1,0 +1,14 @@
+# dsh-expert-team bundle layer.
+#
+# One host-composition row does both halves of this dual-face package:
+#
+# - The row's bare package name loads the root export (lib/index.js), which
+#   registers the experts_* model tools on the host `tools` registry's GLOBAL
+#   layer at boot — visible to every session of every preset.
+# - The client-module scanner resolves `<row name>/package.json` (so the row
+#   must keep the BARE name), reads this package's `dsh.client` declaration,
+#   and wires lib/client.js (the experts_status dashboard card) into
+#   window.__DSH_BOOT__.
+- insert:
+    - id: ui-expert-team
+      name: 'dsh-expert-team'
