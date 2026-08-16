@@ -13,6 +13,34 @@
     },
     "./package.json": "./package.json"
   },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "docs/images",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "expert-team",
+    "expert",
+    "agent",
+    "cross-validation",
+    "专家团"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tipus0731/dsh-expert-team.git"
+  },
+  "homepage": "https://github.com/tipus0731/dsh-expert-team",
+  "bugs": {
+    "url": "https://github.com/tipus0731/dsh-expert-team/issues"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"

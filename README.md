@@ -9,15 +9,51 @@ Expert Team (专家团) plugin for [DeepSeek Harness](https://github.com/deepsee
 - **v1.1.0 additions**: team state persisted to disk (`${DSH_HOME|~/.dsh}/storages/expert-team/team.json`, restored on restart); task `dependsOn` dependency blocking (deliveries rejected while dependencies are unmet); panel gained a connection-state indicator (disconnected / connecting / live / reconnecting / polling) and a persistence badge (persisted / in-memory); task cards gained "expand details"
 - **Team-building principles**: mirror real-world company staffing ratios with mutually independent, non-overlapping roles; design tasks (software UI/visual/interaction/layout) always include a **visual design role**; every team includes one **auxiliary role** (product manager / coordinator / documentation specialist)
 
-## Installation
+## Screenshots
 
-The plugin follows DSH's official profile/bundle paradigm (out-of-tree plugin + `link:` dependency) and works out of the box:
+| Team overview | Team roster |
+|---|---|
+| ![Team overview](docs/images/screenshot-01.png) | ![Team roster](docs/images/screenshot-02.png) |
 
-1. **Place the plugin package**: copy this directory to
-   `%USERPROFILE%\.dsh\profiles\<profile>\packages\dsh-expert-team\`
-   (`<profile>` is usually `web`; you may also put it anywhere else and use a relative path in the next step).
+| Timeline | Expert cross-validation |
+|---|---|
+| ![Timeline](docs/images/screenshot-03.png) | ![Expert cross-validation](docs/images/screenshot-04.png) |
 
-2. **Edit the profile's package.json** (`%USERPROFILE%\.dsh\profiles\<profile>\package.json`):
+| Task board |
+|---|
+| ![Task board](docs/images/screenshot-05.png) |
+
+## Installation & Deployment
+
+The plugin follows DSH's official profile/bundle paradigm (out-of-tree plugin + `link:` dependency). Get the package with any of the methods below, then follow the shared deployment steps.
+
+### Method A — from GitHub (recommended)
+
+Clone the repository directly into the profile's packages directory:
+
+```bash
+cd %USERPROFILE%\.dsh\profiles\web
+git clone https://github.com/tipus0731/dsh-expert-team.git packages/dsh-expert-team
+```
+
+### Method B — local copy (plug and play)
+
+Copy this directory to
+`%USERPROFILE%\.dsh\profiles\<profile>\packages\dsh-expert-team\`
+(`<profile>` is usually `web`; you may also put it anywhere else and use a relative path in the deployment step).
+
+### Method C — npm (coming soon)
+
+The package name `dsh-expert-team` is reserved on the npm registry; once published:
+
+```bash
+cd %USERPROFILE%\.dsh\profiles\web
+npm install dsh-expert-team        # or: pnpm add dsh-expert-team
+```
+
+### Shared deployment steps
+
+1. **Edit the profile's package.json** (`%USERPROFILE%\.dsh\profiles\<profile>\package.json`):
 
    ```json
    {
@@ -36,13 +72,15 @@ The plugin follows DSH's official profile/bundle paradigm (out-of-tree plugin + 
    }
    ```
 
-3. **Install dependencies** (inside the profile directory; requires pnpm 10+):
+   > For Method C, use `"dsh-expert-team": "^1.1.0"` (or `"latest"`) instead of the `link:` entry.
+
+2. **Install dependencies** (inside the profile directory; requires pnpm 10+):
 
    ```bash
    corepack pnpm@10 install
    ```
 
-4. **Restart DSH**. The tools are registered on the host `tools` registry's **global layer**, so they are available in every preset and every session.
+3. **Restart DSH**. The tools are registered on the host `tools` registry's **global layer**, so they are available in every preset and every session.
 
 ## Usage
 

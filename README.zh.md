@@ -9,15 +9,51 @@ Expert Team（专家团）插件 for [DeepSeek Harness](https://github.com/deeps
 - **二次迭代新增**：团队状态持久化到磁盘（`${DSH_HOME|~/.dsh}/storages/expert-team/team.json`，重启恢复）；任务 `dependsOn` 依赖阻塞（未满足依赖时拒绝提交成果）；面板新增连接状态指示（未连接 / 连接中 / 实时 / 重连中 / 轮询）、任务卡「展开详情」与持久化徽标（已持久化 / 内存模式）
 - **组队原则**：参照大公司人员配比，岗位职责相互独立、避免重叠；设计类任务（软件 UI/视觉/交互/版式）内置**美术设计岗**；每组内置一名**辅助岗**（产品经理 / 协调员 / 文档专员）
 
-## 安装
+## 界面展示
 
-插件按 DSH 官方 profile / bundle 范式安装（树外插件 + `link:` 依赖），即插即用：
+| 团队总览 | 团队分工 |
+|---|---|
+| ![团队总览](docs/images/screenshot-01.png) | ![团队分工](docs/images/screenshot-02.png) |
 
-1. **放置插件包**：把本目录复制为
-   `%USERPROFILE%\.dsh\profiles\<profile名>\packages\dsh-expert-team\`
-   （`<profile名>` 通常为 `web`；也可放到任意位置后在下一步改用相对路径）。
+| 协作时间线 | 专家交叉验证 |
+|---|---|
+| ![协作时间线](docs/images/screenshot-03.png) | ![专家交叉验证](docs/images/screenshot-04.png) |
 
-2. **修改 profile 的 package.json**（`%USERPROFILE%\.dsh\profiles\<profile名>\package.json`）：
+| 任务看板 |
+|---|
+| ![任务看板](docs/images/screenshot-05.png) |
+
+## 安装与部署
+
+插件按 DSH 官方 profile / bundle 范式安装（树外插件 + `link:` 依赖）。先用下列任一方式获取插件包，再按「通用部署步骤」操作。
+
+### 方式一：从 GitHub 安装（推荐）
+
+把仓库直接克隆到 profile 的 packages 目录：
+
+```bash
+cd %USERPROFILE%\.dsh\profiles\web
+git clone https://github.com/tipus0731/dsh-expert-team.git packages/dsh-expert-team
+```
+
+### 方式二：本地复制（即插即用）
+
+把本目录复制为
+`%USERPROFILE%\.dsh\profiles\<profile名>\packages\dsh-expert-team\`
+（`<profile名>` 通常为 `web`；也可放到任意位置后在部署步骤改用相对路径）。
+
+### 方式三：npm 安装（即将发布）
+
+包名 `dsh-expert-team` 已在 npm 预留，发布后即可：
+
+```bash
+cd %USERPROFILE%\.dsh\profiles\web
+npm install dsh-expert-team        # 或：pnpm add dsh-expert-team
+```
+
+### 通用部署步骤
+
+1. **修改 profile 的 package.json**（`%USERPROFILE%\.dsh\profiles\<profile名>\package.json`）：
 
    ```json
    {
@@ -36,13 +72,15 @@ Expert Team（专家团）插件 for [DeepSeek Harness](https://github.com/deeps
    }
    ```
 
-3. **安装依赖**（profile 目录下，需要 pnpm 10+）：
+   > 方式三（npm）时，把 `link:` 依赖改为 `"dsh-expert-team": "^1.1.0"`（或 `"latest"`）。
+
+2. **安装依赖**（profile 目录下，需要 pnpm 10+）：
 
    ```bash
    corepack pnpm@10 install
    ```
 
-4. **重启 DSH**。工具注册在宿主 tools 注册表**全局层**，所有预设、所有会话均可用。
+3. **重启 DSH**。工具注册在宿主 tools 注册表**全局层**，所有预设、所有会话均可用。
 
 ## 使用
 
